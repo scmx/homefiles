@@ -1,0 +1,59 @@
+set nocompatible
+
+call pathogen#infect()
+
+syntax on
+colorscheme default
+"colorscheme base16-default
+set background=light
+
+set hidden                 " Hide abandoned buffers
+set ruler                  " Line and column number
+"set number               " Line numbers
+
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+
+set incsearch
+set hlsearch
+
+set scrolloff=16
+
+set ffs=unix,dos,mac
+
+" git gutter
+highlight clear SignColumn
+
+autocmd Filetype html         setl ts=2 sts=2 sw=2
+autocmd Filetype css          setl ts=2 sts=2 sw=2
+autocmd Filetype scss         setl ts=2 sts=2 sw=2
+autocmd Filetype php          setl ts=2 sts=2 sw=2
+autocmd Filetype ruby         setl ts=2 sts=2 sw=2
+autocmd Filetype eruby        setl ts=2 sts=2 sw=2
+autocmd Filetype rake         setl ts=2 sts=2 sw=2
+autocmd Filetype yaml         setl ts=2 sts=2 sw=2
+autocmd Filetype javascript   setl ts=2 sts=2 sw=2
+autocmd Filetype coffee       setl ts=2 sts=2 sw=2
+autocmd Filetype rust         setl ts=4 sts=4 sw=4
+"autocmd Filetype javascript  setl sts=0 noexpandtab
+
+au BufNewFile,BufRead Makefile setl tabstop=4 noet sts=0 sw=4
+au BufNewFile,BufRead Gemfile,Guardfile,Thorfile,*.rabl,*.thor set filetype=ruby
+au BufNewFile,BufRead *.ejs                             set filetype=html
+au BufNewFile,BufRead *.skim                            set filetype=slim
+
+" netrw hide vim files
+let g:netrw_list_hide= '.*\.swp$'
+
+" vim-indent-guides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=8
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=darkgrey
+hi IndentGuidesOdd  guibg=black ctermbg=black
+hi IndentGuidesEven guibg=darkgray ctermbg=darkgray
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
