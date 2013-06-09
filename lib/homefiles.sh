@@ -29,8 +29,15 @@ install_dotfiles() {
     fi
     ln -s $args $file $syml && echo "Linked $(basename $syml)"
   done
-  echo "Installation complete"
+  e_success "Installation complete"
+  e_error "Goto $BASH_SOURCE"
 }
+
+# https://github.com/cowboy/dotfiles/blob/master/bin/dotfiles#L19-L22
+e_header()  { echo -e "\n\033[1m$@\033[0m"; }
+e_success() { echo -e " \033[1;32m✔\033[0m  $@"; }
+e_error()   { echo -e " \033[1;31m✖\033[0m  $@"; }
+e_arrow()   { echo -e " \033[1;33m➜\033[0m  $@"; }
 
 case "$1" in
 ins*)    shift; install_dotfiles $@;;
