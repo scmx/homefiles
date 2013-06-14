@@ -1,1 +1,4 @@
+#!/usr/bin/env bash
+
+cd $(dirname $(dirname $0))
 source lib/homefiles.sh
