@@ -1,3 +1,6 @@
 [submodule "dotfiles/zprezto"]
 	path = dotfiles/zprezto
 	url = git@github.com:sorin-ionescu/prezto
+[submodule "binfiles/vpm"]
+	path = binfiles/vpm
+	url = git@github.com:KevinSjoberg/vpm
