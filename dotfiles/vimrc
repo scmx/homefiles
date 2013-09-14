@@ -6,13 +6,19 @@ let mapleader=',' " Map <Leader> to ','
 
 syntax on
 
-if has('gui_running')
-  colorscheme solarized
-  set background=dark
-else
-  colorscheme default
-  set background=light
-endif
+set background=light
+let g:solarized_termtrans = 1
+colorscheme solarized
+"if has('gui_running')
+"  colorscheme solarized
+"  set background=light
+"else
+"  colorscheme default
+"  set background=light
+"endif
+
+" Hide Horizontal split delimiter
+set fillchars+=vert:\ 
 
 set hidden  " Hide abandoned buffers
 set ruler   " Line and column number
@@ -30,6 +36,12 @@ set hlsearch
 set scrolloff=16
 
 set ffs=unix,dos,mac
+
+set mouse=a "Set marker and text using mouse
+set bs=2    "Make backspace behave normal again
+
+"let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|public'
+"let g:ctrlp_max_files = '50000'
 
 " git gutter
 highlight clear SignColumn
