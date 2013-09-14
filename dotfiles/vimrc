@@ -2,14 +2,21 @@ set nocompatible
 
 execute pathogen#infect()
 
-syntax on
-colorscheme default
-"colorscheme base16-default
-set background=light
+let mapleader=',' " Map <Leader> to ','
 
-set hidden                 " Hide abandoned buffers
-set ruler                  " Line and column number
-"set number               " Line numbers
+syntax on
+
+if has('gui_running')
+  colorscheme solarized
+  set background=dark
+else
+  colorscheme default
+  set background=light
+endif
+
+set hidden  " Hide abandoned buffers
+set ruler   " Line and column number
+"set number " Line numbers
 
 set tabstop=2
 set softtabstop=2
@@ -48,17 +55,32 @@ au BufNewFile,BufRead *.skim set filetype=slim
 au BufNewFile,BufRead *.bats set filetype=sh
 
 " netrw hide vim files
-let g:netrw_list_hide= '.*\.swp$'
+let g:netrw_list_hide= '\.*\.swp$,\.*un\~$'
 
 " vim-indent-guides
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=8
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=darkgrey
-hi IndentGuidesOdd  guibg=black ctermbg=black
-hi IndentGuidesEven guibg=darkgray ctermbg=darkgray
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_auto_colors = 0
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=8
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=darkgrey
+"hi IndentGuidesOdd  guibg=black ctermbg=black
+"hi IndentGuidesEven guibg=darkgray ctermbg=darkgray
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " Gather undofiles here
 set undodir^=~/.vim/undo
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+map <C-n> :NERDTreeToggle<CR>
+
+set splitbelow
+set splitright
+
+" Use xmpfilter to evalutate ruby inside vim with # =>
+nmap <buffer> <Leader>xm <Plug>(xmpfilter-mark)
+nmap <buffer> <Leader>xx <Plug>(xmpfilter-run)
+nmap <buffer> <Leader>xmp <Leader>xm<Leader>xx
