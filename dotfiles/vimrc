@@ -1,8 +1,9 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
+set runtimepath+=~/.vim/bundle/vundle/
 call vundle#rc()
+
 Bundle        'gmarik/vundle'
 Bundle          'kien/ctrlp.vim'
 Bundle        'othree/javascript-libraries-syntax.vim'
@@ -21,23 +22,13 @@ Bundle 'slim-template/vim-slim'
 
 filetype plugin indent on
 
-let mapleader=',' " Map <Leader> to ','
-
 syntax on
 
-" dictionary with the powerline symbols.
-let g:airline_powerline_fonts = 1
-
-" fixes: vim-airline doesn't appear until I create a new split
-set laststatus=2
-set noshowmode
-
 set background=dark
+
 let g:solarized_termtrans = 1
 colorscheme solarized
-
-" Hide Horizontal split delimiter
-set fillchars+=vert:\ 
+call togglebg#map("<F6>")
 
 set hidden  " Hide abandoned buffers
 set ruler   " Line and column number
@@ -54,21 +45,52 @@ set hlsearch
 
 set scrolloff=16
 
-set ffs=unix,dos,mac
+set fileformats=unix,dos,mac
+
+set splitbelow
+set splitright
 
 set mouse=a "Set marker and text using mouse
-set bs=2    "Make backspace behave normal again
+set backspace=2    "Make backspace behave normal again
+
+" fixes: vim-airline doesn't appear until I create a new split
+set laststatus=2
+set noshowmode
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" Gather undofiles here
+set undodir^=~/.vim/undo
+
+set fillchars+=vert:\  " Hide Horizontal split delimiter
+
+" Show trailing whitespace
+set list listchars=tab:\ \ ,trail:·
+
+let mapleader=',' " Map <Leader> to ','
+
+" dictionary with the powerline symbols.
+let g:airline_powerline_fonts = 1
 
 "let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|public'
 let g:ctrlp_custom_ignore = '.svn'
 let g:ctrlp_max_files = '10000'
 
-" git gutter
-highlight clear SignColumn
+" netrw hide vim files
+let g:netrw_list_hide= '\.*\.swp$,\.*un\~$'
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Use xmpfilter to evalutate ruby inside vim with # =>
+nmap <buffer> <Leader>xm <Plug>(xmpfilter-mark)
+nmap <buffer> <Leader>xx <Plug>(xmpfilter-run)
+nmap <buffer> <Leader>xmp <Leader>xm<Leader>xx
 
 autocmd Filetype rust         setl ts=4 sts=4 sw=4
 "autocmd Filetype javascript  setl sts=0 noexpandtab
-filetype plugin indent on
 
 au BufNewFile,BufRead Makefile setl tabstop=4 noet sts=0 sw=4
 au BufNewFile,BufRead Gemfile,Guardfile,Thorfile,*.rabl,*.thor set filetype=ruby
@@ -76,30 +98,6 @@ au BufNewFile,BufRead *.ejs  set filetype=html
 au BufNewFile,BufRead *.skim set filetype=slim
 au BufNewFile,BufRead *.bats set filetype=sh
 
-" netrw hide vim files
-let g:netrw_list_hide= '\.*\.swp$,\.*un\~$'
-
-" Show trailing whitespace
-set list listchars=tab:\ \ ,trail:·
-
+" git gutter
+highlight SignColumn ctermbg=10
 highlight SpecialKey ctermbg=0
-
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-" Gather undofiles here
-set undodir^=~/.vim/undo
-
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-call togglebg#map("<F6>")
-
-set splitbelow
-set splitright
-
-" Use xmpfilter to evalutate ruby inside vim with # =>
-nmap <buffer> <Leader>xm <Plug>(xmpfilter-mark)
-nmap <buffer> <Leader>xx <Plug>(xmpfilter-run)
-nmap <buffer> <Leader>xmp <Leader>xm<Leader>xx
