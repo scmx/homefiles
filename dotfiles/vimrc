@@ -1,6 +1,25 @@
 set nocompatible
+filetype off
 
-execute pathogen#infect()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle        'gmarik/vundle'
+Bundle          'kien/ctrlp.vim'
+Bundle        'othree/javascript-libraries-syntax.vim'
+Bundle         'wting/rust.vim'
+Bundle         'bling/vim-airline'
+Bundle        'kchmck/vim-coffee-script'
+Bundle   'altercation/vim-colors-solarized'
+Bundle         'tpope/vim-fugitive'
+Bundle      'airblade/vim-gitgutter'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle      'pangloss/vim-javascript'
+Bundle         'tpope/vim-rake'
+Bundle        'sunaku/vim-ruby-minitest'
+Bundle          't9md/vim-ruby-xmpfilter'
+Bundle 'slim-template/vim-slim'
+
+filetype plugin indent on
 
 let mapleader=',' " Map <Leader> to ','
 
@@ -16,13 +35,6 @@ set noshowmode
 set background=dark
 let g:solarized_termtrans = 1
 colorscheme solarized
-"if has('gui_running')
-"  colorscheme solarized
-"  set background=light
-"else
-"  colorscheme default
-"  set background=light
-"endif
 
 " Hide Horizontal split delimiter
 set fillchars+=vert:\ 
@@ -54,16 +66,6 @@ let g:ctrlp_max_files = '10000'
 " git gutter
 highlight clear SignColumn
 
-autocmd Filetype html         setl ts=2 sts=2 sw=2
-autocmd Filetype css          setl ts=2 sts=2 sw=2
-autocmd Filetype scss         setl ts=2 sts=2 sw=2
-autocmd Filetype php          setl ts=2 sts=2 sw=2
-autocmd Filetype ruby         setl ts=2 sts=2 sw=2
-autocmd Filetype eruby        setl ts=2 sts=2 sw=2
-autocmd Filetype rake         setl ts=2 sts=2 sw=2
-autocmd Filetype yaml         setl ts=2 sts=2 sw=2
-autocmd Filetype javascript   setl ts=2 sts=2 sw=2
-autocmd Filetype coffee       setl ts=2 sts=2 sw=2
 autocmd Filetype rust         setl ts=4 sts=4 sw=4
 "autocmd Filetype javascript  setl sts=0 noexpandtab
 filetype plugin indent on
@@ -76,14 +78,6 @@ au BufNewFile,BufRead *.bats set filetype=sh
 
 " netrw hide vim files
 let g:netrw_list_hide= '\.*\.swp$,\.*un\~$'
-
-" vim-indent-guides
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_auto_colors = 0
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=8
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=darkgrey
-"hi IndentGuidesOdd  guibg=black ctermbg=black
-"hi IndentGuidesEven guibg=darkgray ctermbg=darkgray
 
 " Show trailing whitespace
 set list listchars=tab:\ \ ,trail:·
@@ -99,8 +93,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-" map <C-n> :NERDTreeToggle<CR>
 
 call togglebg#map("<F6>")
 
