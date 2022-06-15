@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+set -euo pipefail
+
+export GIT_WORK_TREE=$HOME
+export GIT_DIR=$HOME/Dev/homefiles.git
+
+dark_gray='\033[1;30m'
+reset='\033[0m'
+echo "${dark_gray}Using $GIT_DIR${reset}"
+
+case "${1:-}" in
+  "")
+    git status -bs
+    ;;
+  *)
+    git "$@"
+    ;;
+esac
